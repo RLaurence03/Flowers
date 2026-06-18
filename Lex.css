@@ -1,0 +1,328 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0b1020, #020409);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Name */
+
+.name {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+.name h2 {
+  color: white;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-family: cursive;
+  margin: 0;
+}
+
+/* Sky */
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.moon {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+  width: clamp(60px, 12vw, 120px);
+  height: clamp(60px, 12vw, 120px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffffff,
+    #f0f0ff 40%,
+    #bfbfff 70%,
+    #6b6b8f
+  );
+  box-shadow: 0 0 30px rgba(255,255,255,.4);
+}
+
+.star {
+  position: absolute;
+  width: clamp(4px, 1vw, 10px);
+  height: clamp(4px, 1vw, 10px);
+  background: white;
+  opacity: .9;
+
+  clip-path: polygon(
+    50% 0%,
+    60% 35%,
+    100% 50%,
+    60% 65%,
+    50% 100%,
+    40% 65%,
+    0% 50%,
+    40% 35%
+  );
+
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,100% {
+    opacity: .2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Bouquet */
+
+.bouquet {
+  position: relative;
+  z-index: 1;
+  width: min(90vw, 400px);
+  height: min(65vh, 320px);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* Sway */
+
+.sway {
+  position: absolute;
+  width: clamp(120px, 20vw, 220px);
+  height: clamp(120px, 20vw, 220px);
+  transform-origin: bottom center;
+}
+
+.flower {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Stem */
+
+.stem {
+  position: absolute;
+  width: clamp(5px, 1vw, 10px);
+  height: clamp(220px, 45vh, 500px);
+
+  background: linear-gradient(
+    to bottom,
+    #0d8f3c,
+    #074a1f
+  );
+
+  left: 50%;
+  top: 50%;
+  transform-origin: top center;
+  border-radius: 10px;
+}
+
+.stem1 {
+  transform: translateX(-40%) rotate(-32deg);
+}
+
+.stem2 {
+  transform: translateX(-50%) rotate(-7deg);
+}
+
+.stem3 {
+  transform: translateX(-50%) rotate(14deg);
+}
+
+/* Flower Positions */
+
+.sway1 {
+  left: -60px;
+  top: 0;
+}
+
+.sway2 {
+  left: 17px;
+  top: -200px;
+  transform: scale(1.1);
+}
+
+.sway3 {
+  left: 120px;
+  top: -20px;
+}
+
+/* Petals */
+
+.petal {
+  position: absolute;
+
+  width: clamp(50px, 8vw, 90px);
+  height: clamp(70px, 12vw, 130px);
+
+  left: 50%;
+  top: 50%;
+
+  background: linear-gradient(
+    to top,
+    #ff5e9c,
+    #ffd1e3
+  );
+
+  border-radius: 50% 50% 0 0;
+
+  transform-origin: bottom center;
+  transform: translate(-50%, -100%) rotate(var(--r)) scale(0);
+
+  animation: bloom 2s ease-out forwards;
+
+  filter: drop-shadow(
+    0 0 8px rgba(255,120,170,.5)
+  );
+}
+
+.flower2 .petal {
+  width: clamp(70px, 10vw, 120px);
+  height: clamp(100px, 15vw, 170px);
+}
+
+.flower1 .petal {
+  width: clamp(45px, 7vw, 80px);
+  height: clamp(65px, 10vw, 110px);
+}
+
+/* Bloom Delays */
+
+.petal:nth-child(2) { animation-delay: 0s; }
+.petal:nth-child(3) { animation-delay: .15s; }
+.petal:nth-child(4) { animation-delay: .3s; }
+.petal:nth-child(5) { animation-delay: .45s; }
+.petal:nth-child(6) { animation-delay: .6s; }
+.petal:nth-child(7) { animation-delay: .75s; }
+
+/* Centers */
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  background: #ffdd55;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%) scale(0);
+
+  box-shadow: 0 0 15px rgba(255,220,100,.8);
+
+  animation: centerPop .6s ease-out forwards;
+  animation-delay: 1.2s;
+}
+
+.flower2 .center {
+  width: clamp(70px, 12vw, 150px);
+  height: clamp(70px, 12vw, 150px);
+}
+
+.flower3 .center {
+  width: clamp(55px, 9vw, 110px);
+  height: clamp(55px, 9vw, 110px);
+}
+
+.flower1 .center {
+  width: clamp(45px, 8vw, 90px);
+  height: clamp(45px, 8vw, 90px);
+}
+
+/* Animations */
+
+@keyframes bloom {
+  to {
+    transform: translate(-50%, -100%)
+      rotate(var(--r))
+      scale(1);
+  }
+}
+
+@keyframes centerPop {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes sway {
+  0% {
+    transform: rotate(-2deg) scale(var(--s));
+  }
+  50% {
+    transform: rotate(2deg) scale(var(--s));
+  }
+  100% {
+    transform: rotate(-2deg) scale(var(--s));
+  }
+}
+
+.sway1 {
+  --s: 1;
+  animation: sway 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.sway2 {
+  --s: 1.1;
+  animation: sway 5s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.sway3 {
+  --s: 1;
+  animation: sway 7s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .bouquet {
+    transform: scale(.8);
+    transform-origin: bottom center;
+  }
+
+  .sway1 {
+    left: -40px;
+  }
+
+  .sway2 {
+    left: 10px;
+    top: -130px;
+  }
+
+  .sway3 {
+    left: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .bouquet {
+    transform: scale(.6);
+  }
+
+  .sway2 {
+    top: -100px;
+  }
+}
+
